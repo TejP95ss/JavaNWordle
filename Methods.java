@@ -9,44 +9,41 @@ public class Methods extends NWordle{
         if(currentGuess.length() == GuessLength) {valid = true;}
         return valid;
     }
+
     // Returns the colored word based on location of the letters in the guess and the actual word
     static String Checker(String word, String currentGuess, boolean Validity){
         currentGuess = currentGuess.toUpperCase();
-        String varWord = "";
-        ArrayList<Integer> allWordLetterPosition = new ArrayList<Integer>();
+        String varWord, newGuess, mainColor;
+        varWord = newGuess = mainColor = "";
         ArrayList<Integer> newAllWordLetterPosition = new ArrayList<Integer>();
-        String newColors = "";
-        String mainColor = "";
-        // Creates an ArrayList matching the index of each letter of the current guess to the actual word
+
+        // Creates new words of the original word and the guess with matching letters replaced with '1' 
         for(int j = 0; j < currentGuess.length(); j++) {
             char letter = currentGuess.charAt(j);
             int value = word.substring(j).indexOf(letter);
             if (value != -1) {value += j;}
-            allWordLetterPosition.add(value);
-        }
-        // Creates new words of the original word and the guess with matching letters replaced with '1' 
-        for(int j = 0; j < currentGuess.length(); j++) {
-            if (allWordLetterPosition.get(j) == j) {
-                newColors += '1';
+            if (value == j) {
+                newGuess += '1';
                 varWord += '1';
             }
-            else {newColors += currentGuess.charAt(j);
+            else {newGuess += currentGuess.charAt(j);
                   varWord += word.charAt(j);  }
         }
+
         // Creates a new ArrayList matching the index of each letter of newColors with the original word
         for(int j = 0; j < currentGuess.length(); j++) {
-            char letter = newColors.charAt(j);
+            char letter = newGuess.charAt(j);
             int value = varWord.indexOf(letter);
             if('1' != varWord.charAt(j) && value != -1) {newAllWordLetterPosition.add(-2);}
             else {newAllWordLetterPosition.add(value);}
             if (value != -1) {
                 varWord = varWord.substring(0, value) + '0' + varWord.substring(value + 1);
                 }
-            
         }
+
         // Assigns colors to each letter of the guess based on the previous variables
         for(int j = 0; j < currentGuess.length(); j++) {
-            if (newColors.charAt(j) == '1') {
+            if (newGuess.charAt(j) == '1') {
                 mainColor += GREEN + currentGuess.charAt(j) + RESET;
             }
             else if (newAllWordLetterPosition.get(j) == -1) {    
@@ -54,6 +51,7 @@ public class Methods extends NWordle{
             }
             else {mainColor += YELLOW + currentGuess.charAt(j) + RESET;}
         }
+
         if(currentGuess.equals(word)) {
             String newMainColor = "";
             for(int k = 0; k < currentGuess.length(); k++) {
@@ -61,10 +59,10 @@ public class Methods extends NWordle{
             }
             mainColor = newMainColor;
         }
+
         if(Validity) {return currentGuess;}
         else return mainColor;
     }
-    
     
     // Returns all words of the same length as the inputted word length from a text file of words.
     public static ArrayList<String> theword_list(String filename, int wordLength){
@@ -83,8 +81,6 @@ public class Methods extends NWordle{
         }
     }
     
-    
-    
     // Displays the word with hints using colors, and also shows the unused letters in an ArrayList
     public static void Display(ArrayList<ArrayList<String>> allColorWords, ArrayList<Set<Character>> allArray){
         System.out.print("\033[H\033[2J");  
@@ -98,11 +94,10 @@ public class Methods extends NWordle{
         }
     }
 
-
     public static boolean AnyFalse(ArrayList<Boolean> Valids) {
         boolean value = false;
         for (int i = 0; i < Valids.size(); i++) {
-            if (Valids.get(i) == false) {
+            if (!Valids.get(i)) {
                 value = true;
                 return value;
             }
@@ -110,6 +105,4 @@ public class Methods extends NWordle{
         }
         return value;
     }
-    
-
 }
