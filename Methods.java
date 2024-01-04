@@ -83,10 +83,15 @@ public class Methods extends NWordle{
     
     // Displays the word with hints using colors, and also shows the unused letters in an ArrayList
     public static void Display(ArrayList<ArrayList<String>> allColorWords, ArrayList<Set<Character>> allArray){
+        ArrayList<String> intStrings = new ArrayList<>();
+        for(int j = 0; j < allColorWords.get(0).size() + allColorWords.get(0).get(0).length(); j++){
+            if(j >= 0 && j <= 8) {intStrings.add("Guess 0" + (j+1) + ": ");}
+            else {intStrings.add("Guess " + String.valueOf(j+1) + ": ");}
+        }
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
         for(int j = 0; j < allColorWords.get(0).size(); j++) {
-            System.out.print("Guess " + (j+1) + " ");
+            System.out.print(intStrings.get(j));
             for (int x = 0; x < allColorWords.size(); x++) {
                 System.out.print(allColorWords.get(x).get(j) + " "); 
             }
@@ -94,6 +99,7 @@ public class Methods extends NWordle{
         }
     }
 
+    // Returns true if any boolean values in a array of booleans is false.
     public static boolean AnyFalse(ArrayList<Boolean> Valids) {
         boolean value = false;
         for (int i = 0; i < Valids.size(); i++) {

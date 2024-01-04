@@ -51,7 +51,8 @@ public static void main(String[] args){
             boolean length = false;
 
             do {
-            System.out.print("Guess " + (x+1) + ":");
+            if(x < 9) {System.out.print("Guess 0" + (x+1) + ": ");}
+            else {System.out.print("Guess " + (x+1) + ": ");}            
             String Ans = Scan.nextLine();
             currentGuess = Ans.toUpperCase();
             boolean inList = Arrays.asList(ArrayML).contains(currentGuess);
