@@ -11,7 +11,7 @@ import java.util.Set;
 import model.GameLogic;
 
 
-
+// controller for the game. Takes in user inputs and plays accordingly until the game ends.
 public class SyncController {
   GameLogic logic;
   Readable read;
@@ -25,6 +25,7 @@ public class SyncController {
   static String RED = "\u001B[31m";
 
 
+  // sets the readable and appendable to the passed in arguments as well as the game logic.
   public SyncController(GameLogic logic, Readable read, Appendable app) {
     this.read = Objects.requireNonNull(read);
     this.app = Objects.requireNonNull(app);
@@ -74,17 +75,18 @@ public class SyncController {
         do {
           if (x < 9) {
             writeMessage("Guess 0" + (x + 1) + ": ");
-          } else {
+          } else { // does this to print out all lines aligned correctly.
             writeMessage("Guess " + (x + 1) + ": ");
           }
           String Ans = scan.nextLine();
           currentGuess = Ans.toUpperCase();
           validLength = logic.validCheck(currentGuess, wordLength);
-          if (!validLength) {
+          if (!validLength) { // invalid word guess.
             writeMessage("Invalid word length or word not in dictionary! Try again.\n");
           }
         } while (!validLength);
 
+        // colorizes the word to match the correct word and the guesses so far.
         logic.colorize(currentGuess);
 
         // adds the letters of this guess to the list of used letters
@@ -103,12 +105,13 @@ public class SyncController {
       }
     }
 
+    // shows the user the result after the game has finished and closes scanner.
     logic.showResults(this.app);
     scan.close();
   }
 
   // consolidates appending strings to the appendable into a method to avoid repetition.
-  private void writeMessage(String msg)  {
+  private void writeMessage(String msg) {
     try {
       this.app.append(msg);
     } catch (IOException e) {

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/NWordle.iml" filepath="$PROJECT_DIR$/NWordle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaNWordle.iml" filepath="$PROJECT_DIR$/JavaNWordle.iml" />
     </modules>
   </component>
 </project>

@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+// class consists of all the game logic including necessary fields, methods, constants.
 public class GameLogic {
   // All font and background colors used in the game
   static String GREEN = "\u001B[32m";
