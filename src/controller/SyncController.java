@@ -41,11 +41,11 @@ public class SyncController {
     writeMessage("Welcome to NWordle! You can pick the word length and the number of words you want to guess!\n");
     boolean continues = true;
     while (continues) {
-      writeMessage("Enter the word length you want to guess(4 or 5), and how many words do you want to guess?(space separated) \n");
+      writeMessage("Enter the word length you want to guess(4-6), and how many words do you want to guess?(space separated) \n");
       writeMessage(GREEN + "GREEN = Correctly Placed," + YELLOW + " YELLOW = Incorrect Placed" + RED + " RED = Letter not in word" + RESET + "\n");
       this.wordLength = scan.nextInt();
       this.numberOfWords = scan.nextInt();
-      if ((this.wordLength == 4 || this.wordLength == 5) && this.numberOfWords >= 1) {
+      if ((this.wordLength >= 4 && this.wordLength <= 6) && this.numberOfWords >= 1) {
         continues = false;
       } else {
         writeMessage("One of the inputs was invalid! Try Again!\n");
