@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="JavaNWordle:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/JavaNWordle_jar</output-path>
-    <root id="archive" name="JavaNWordle.jar">
-      <element id="module-output" name="JavaNWordle" />
-    </root>
-  </artifact>
-</component>

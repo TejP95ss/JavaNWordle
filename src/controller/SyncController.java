@@ -38,16 +38,17 @@ public class SyncController {
 
   // asks the starting inputs to correctly start the game with appropriate word lengths/guesses.
   private void askStartInputs() {
+    writeMessage("Welcome to NWordle! You can pick the word length and the number of words you want to guess!\n");
     boolean continues = true;
     while (continues) {
-      writeMessage("Do you want to guess a 4 letter word or a 5 letter word? And how many words do you want to guess? \n");
+      writeMessage("Enter the word length you want to guess(4 or 5), and how many words do you want to guess?(space separated) \n");
       writeMessage(GREEN + "GREEN = Correctly Placed," + YELLOW + " YELLOW = Incorrect Placed" + RED + " RED = Letter not in word" + RESET + "\n");
       this.wordLength = scan.nextInt();
       this.numberOfWords = scan.nextInt();
       if ((this.wordLength == 4 || this.wordLength == 5) && this.numberOfWords >= 1) {
         continues = false;
       } else {
-        writeMessage("Invalid input. The word must either be 4 or 5 letters long\n");
+        writeMessage("One of the inputs was invalid! Try Again!\n");
       }
     }
     scan.nextLine();
